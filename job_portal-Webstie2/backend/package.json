@@ -4,7 +4,8 @@
   "description": "Job portal",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js",
+    "build": "react-scripts build"
   },
   "author": "",
   "license": "ISC",
