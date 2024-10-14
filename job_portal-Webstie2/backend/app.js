@@ -49,5 +49,5 @@ app.use(errorhandler);
 const port=process.env.Port;
 
 app.listen(port,()=>{
-    console.log(`Server run : ${3000}`)
+    console.log(`Server run : ${port || 3000}`)
 });
