@@ -44,6 +44,11 @@ app.use('/api', adminRoutes);
 
 app.use(errorhandler);
 
+// Define a route for the root URL
+app.get('/', (req, res) => {
+    res.send('Welcome to the Job Portal API!');
+  });
+  
 
 //Server port
 const port=process.env.Port;
