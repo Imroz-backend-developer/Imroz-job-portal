@@ -50,7 +50,7 @@ const DashEditJob = () => {
 
 
     const { Jobtype } = useSelector(state => state.jobTypeAll) || "not define";
-    const { singleJob, loading } = useSelector(state => state.singleJob) || "not define";
+    const { singleJob} = useSelector(state => state.singleJob) || "not define";
     const { success } = useSelector(state => state.updateJob);
 
     const formik = useFormik({

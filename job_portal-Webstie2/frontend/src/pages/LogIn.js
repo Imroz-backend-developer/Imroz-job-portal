@@ -37,7 +37,7 @@ const LogIn = () => {
        // if (isAuthenticated) {
            // navigate('/user/dashboard');
        // }
-    }, [isAuthenticated, navigate]);
+    }, [isAuthenticated, navigate,userInfo]);
     const formik=useFormik({
         initialValues:{
             Email:'',
