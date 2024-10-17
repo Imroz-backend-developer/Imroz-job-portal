@@ -30,8 +30,7 @@
     "yup": "^1.4.0"
   },
   "scripts": {
-    "start": "react-scripts start",  // Updated line
-    "build": "react-scripts build",
+    "start": "react-scripts start",  
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
