@@ -66,8 +66,6 @@ exports.deleteJob = async (req, res, next) => {
 //Show all jobs
 
 exports.showJobs = async (req, res, next) => {
-
-  // Enable Search by keyword
   const keyword = req.query.keyword ? {
     Title: {
       $regex: req.query.keyword,
@@ -75,56 +73,53 @@ exports.showJobs = async (req, res, next) => {
     }
   } : {};
 
-  // Filter jobs by category id
   let ids = [];
   const jobTypeCategory = await Jobtype.find({}, { _id: 1 });
-  jobTypeCategory.forEach(cat => {
-    ids.push(cat._id);
-  });
-  let cat = req.query.cat;
-  let categ = cat !== '' && cat ? cat : {$in:ids};
+  jobTypeCategory.forEach(cat => ids.push(cat._id));
 
-  // Job by location
+  let cat = req.query.cat;
+  let categ = cat && cat !== '' ? cat : { $in: ids };
+
   let locations = [];
   const jobByLocation = await Job.find({}, { location: 1 });
-  jobByLocation.forEach(val => {
-    locations.push(val.location);
-  });
+  jobByLocation.forEach(val => locations.push(val.location));
   let setUniqueLocation = [...new Set(locations)];
 
-  // Use req.query.location for filtering
   let location = req.query.location;
-  let locationFilter = location && location !== '' ? location : setUniqueLocation;
+  let locationFilter = location && location !== '' ? location : { $in: setUniqueLocation };
 
-  // Enable pagination
   const pageSize = 5;
   const page = Number(req.query.pageNumber) || 1;
 
   try {
-    const count = await Job.find({
-      ...keyword,
-      Jobtype: categ,
-      location: location ? location : { $in: setUniqueLocation } // Use user-provided location or all locations
-    }).countDocuments();
+    // Logging filter conditions
+    console.log('Keyword:', keyword);
+    console.log('Category ID:', categ);
+    console.log('Location Filter:', locationFilter);
 
-    const jobs = await Job.find({
+    const count = await Job.countDocuments({
       ...keyword,
       Jobtype: categ,
-      location: location ? location : { $in: setUniqueLocation } // Use user-provided location or all locations
+      location: locationFilter
+    });
+
+    const job = await Job.find({
+      ...keyword,
+      Jobtype: categ,
+      location: locationFilter
     })
-      .sort({createdAt:-1})
-      .populate('Jobtype','JobTypeName')
-      .populate('user','Firstname Lastname')
-      .skip(pageSize * (page - 1))
-      .limit(pageSize);
+    .populate('Jobtype', 'JobTypeName')
+    .populate('user', 'Firstname Lastname')
+    .skip(pageSize * (page - 1))
+    .limit(pageSize);
 
     res.status(200).json({
       success: true,
-      jobs,
+      job,
       page,
       pages: Math.ceil(count / pageSize),
       count,
-      setUniqueLocation // Return all available unique locations
+      setUniqueLocation
     });
   } catch (error) {
     next(error);
