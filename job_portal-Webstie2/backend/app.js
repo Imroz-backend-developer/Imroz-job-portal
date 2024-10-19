@@ -34,7 +34,7 @@ app.use(bodyparser.urlencoded({
 app.use(cookieParser());
 app.use(cors());
 app.use(cors({
-    origin: 'http://localhost:53647 ', // Update this with your actual frontend URL
+    origin: 'https://imroz-job-portal-frontend-deploye.onrender.com/ ', // Update this with your actual frontend URL
   }));
 
 app.use('/api',authroutes);
