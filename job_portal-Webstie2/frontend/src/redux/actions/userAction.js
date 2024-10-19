@@ -33,7 +33,7 @@ import {
 export const userSignInAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
     try {
-        const { data } = await axios.post("/api/Singin", user);
+        const { data } = await axios.post("https://imroz-job-portal-backend-19.onrender.com/api/Singin", user);
         localStorage.setItem('userInfo', JSON.stringify(data));
         dispatch({
             type: USER_SIGNIN_SUCCESS,
@@ -52,7 +52,7 @@ export const userSignInAction = (user) => async (dispatch) => {
 export const userSignUpAction = (user) => async (dispatch) => {
     dispatch({ type: USER_SIGNUP_REQUEST });
     try {
-        const { data } = await axios.post("/api/Singup", user);
+        const { data } = await axios.post("https://imroz-job-portal-backend-19.onrender.com/api/Singup", user);
 
         dispatch({
             type: USER_SIGNUP_SUCCESS,
@@ -94,7 +94,7 @@ export const userLogoutAction = () => async (dispatch) => {
 export const userProfileAction = () => async (dispatch) => {
     dispatch({ type: USER_LOAD_REQUEST });
     try {
-        const { data } = await axios.get("/api/me",{
+        const { data } = await axios.get("https://imroz-job-portal-backend-19.onrender.com/api/me",{
             headers: { 'Cache-Control': 'no-cache' },
         });
         dispatch({
@@ -115,7 +115,7 @@ export const allUserAction = () => async (dispatch) => {
     dispatch({ type: ALL_USER_LOAD_REQUEST });
 
     try {
-        const { data } = await axios.get('/api/alluser', {
+        const { data } = await axios.get('https://imroz-job-portal-backend-19.onrender.com/api/alluser', {
             headers: { 'Cache-Control': 'no-cache' },
         });
 
@@ -144,7 +144,7 @@ export const allUserAction = () => async (dispatch) => {
 export const userApplyJobAction = (job) => async (dispatch) => {
     dispatch({ type: USER_APPLY_JOB_REQUEST });
     try {
-        const { data } = await axios.post("/api/user/jobhistory", job);
+        const { data } = await axios.post("https://imroz-job-portal-backend-19.onrender.com/api/user/jobhistory", job);
 
         dispatch({
             type: USER_APPLY_JOB_SUCCESS,
@@ -162,7 +162,7 @@ export const userApplyJobAction = (job) => async (dispatch) => {
 export const deleteUserAction = (id) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_USER_REQUEST });
-        await axios.delete(`/api/user/delete/${id}`);
+        await axios.delete(`https://imroz-job-portal-backend-19.onrender.com/api/user/delete/${id}`);
         dispatch({ type: DELETE_USER_SUCCESS, payload: id });
     } catch (error) {
         dispatch({ type: DELETE_USER_FAIL, payload: error.message });
@@ -173,7 +173,7 @@ export const getUserDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: USER_DETAILS_REQUEST });
         const token = localStorage.getItem('token'); // Adjust this based on where you store your token
-        const { data } = await axios.get(`/api/User/${id}`, {
+        const { data } = await axios.get(`https://imroz-job-portal-backend-19.onrender.com/api/User/${id}`, {
             headers: {
                 Authorization: `Bearer ${token}`, // or whatever scheme you're using
             }, // Make an API call to get user details
@@ -199,7 +199,7 @@ export const updateUserAction = (userData) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.put(`/api/User/edit/${userData._id}`, userData, config);
+        const { data } = await axios.put(`https://imroz-job-portal-backend-19.onrender.com/api/User/edit/${userData._id}`, userData, config);
 
         dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
     } catch (error) {
@@ -221,7 +221,7 @@ export const fetchAdminStats = () => async (dispatch) => {
               'Cache-Control': 'no-cache',
             },
         };
-        const { data } = await axios.get("/api/admin/stats",config); // Change the endpoint as needed
+        const { data } = await axios.get("https://imroz-job-portal-backend-19.onrender.com/api/admin/stats",config); // Change the endpoint as needed
         dispatch({
             type: 'ADMIN_STATS_SUCCESS',
             payload: data
