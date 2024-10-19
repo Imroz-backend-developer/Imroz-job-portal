@@ -52,23 +52,23 @@ const App = () => {
                     <ProSidebarProvider>
                         <BrowserRouter>
                             <Routes>
-                                <Route path='https://imroz-job-portal-9.onrender.com/' element={<Home />} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/search/location/:location' element={<Home />} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/search/:keyword' element={<Home />} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/login' element={<LogIn />} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/register' element={<Register />} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/job/:id' element={<SingleJob />} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/dashboard' element={<AdminRoute><AdminDashboardHOC /></AdminRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/users' element={<AdminRoute><DashUsersHOC /></AdminRoute>} />
-                                <Route path="https://imroz-job-portal-9.onrender.com/admin/user/edit/:id" element= {<AdminRoute><EditUserHOC /></AdminRoute>}/>  {/* Edit user page */}
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/jobs' element={<AdminRoute><DashJobsHOC /></AdminRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/category' element={<AdminRoute><DashCategoryHOC /></AdminRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/job/create' element={<AdminRoute><DashCreateJobHOC /></AdminRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/edit/job/:id' element={<AdminRoute><DashAdminEditJobHOC /></AdminRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/admin/category/create' element={<AdminRoute><DashCreateCategoryHOC /></AdminRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/user/dashboard' element={<UserRoute>< UserDashboardHOC /></UserRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/user/jobs' element={<UserRoute>< UserJobsHistoryHOC /></UserRoute>} />
-                                <Route path='https://imroz-job-portal-9.onrender.com/user/info' element={<UserRoute>< UserInfoDashboardHOC /></UserRoute>} />
+                                <Route path='/' element={<Home />} />
+                                <Route path='/search/location/:location' element={<Home />} />
+                                <Route path='/search/:keyword' element={<Home />} />
+                                <Route path='/login' element={<LogIn />} />
+                                <Route path='/register' element={<Register />} />
+                                <Route path='/job/:id' element={<SingleJob />} />
+                                <Route path='/dashboard' element={<AdminRoute><AdminDashboardHOC /></AdminRoute>} />
+                                <Route path='/admin/users' element={<AdminRoute><DashUsersHOC /></AdminRoute>} />
+                                <Route path="/admin/user/edit/:id" element= {<AdminRoute><EditUserHOC /></AdminRoute>}/>  {/* Edit user page */}
+                                <Route path='/admin/jobs' element={<AdminRoute><DashJobsHOC /></AdminRoute>} />
+                                <Route path='/admin/category' element={<AdminRoute><DashCategoryHOC /></AdminRoute>} />
+                                <Route path='/admin/job/create' element={<AdminRoute><DashCreateJobHOC /></AdminRoute>} />
+                                <Route path='/admin/edit/job/:id' element={<AdminRoute><DashAdminEditJobHOC /></AdminRoute>} />
+                                <Route path='/admin/category/create' element={<AdminRoute><DashCreateCategoryHOC /></AdminRoute>} />
+                                <Route path='/user/dashboard' element={<UserRoute>< UserDashboardHOC /></UserRoute>} />
+                                <Route path='/user/jobs' element={<UserRoute>< UserJobsHistoryHOC /></UserRoute>} />
+                                <Route path='/user/info' element={<UserRoute>< UserInfoDashboardHOC /></UserRoute>} />
                                 <Route path='*' element={<NotFound />} />
                             </Routes>
                          </BrowserRouter>
